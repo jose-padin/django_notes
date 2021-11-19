@@ -7,12 +7,22 @@ TODO:
 5 - Add support to log in
 6 - Add support to store data related with a user
 7 - Add flake-8 support
+8 - Add support to multiple notes containers (with title)
 */
+
+
+const note_txt = document.getElementById("add_note_txt");
+
+
+note_txt.addEventListener("keydown", event => {
+    if (event.key === 'Enter') {
+        addNote();
+    }
+})
 
 
 // Validate that the note has some text inside
 function validate_note_text() {
-    const note_txt = document.getElementById("add_note_txt");
     if (note_txt.value) {
         return note_txt.value;
     }
