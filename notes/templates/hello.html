@@ -30,20 +30,21 @@
                 {% for note in notes %}
                     <div class="d-flex align-items-center">
                         <label>
-                            <input type="checkbox" class="option-input radio"><span class="label-text">{{ note }}</span>
-                            <input type="button" value="delete" onclick="deleteNote({{note.id}})">
+                            <input type="checkbox" {% if note.is_done %} checked="true" {% endif %} class="option-input radio" onclick="changeStyle(event, {{ note.id }})" />
+                            <span  {% if note.is_done %} style="text-decoration-line: line-through;" {% endif %} class="label-text">{{ note }}</span>
+                            <input type="button" value="delete" onclick="deleteNote({{ note.id }})">
                         </label>
                     </div>
                 {% endfor %}
                     <!-- TODO: add style to this input field -->
                     <input class="" type="text" value="" id="add_note_txt" tabindex="1" />
-                    <input type="button" value="add" id="add_note_btn" tabindex="2" />
+                    <input type="button" value="add" onclick="addNote()" tabindex="2" />
                 </div>
            </div>
         </div>
     </div>
     {% endif %}
 
-     <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
