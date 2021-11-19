@@ -17,15 +17,8 @@ class NoteList(ModelViewSet):
     serializer_class = NoteSerializer
     permission_classes = (AllowAny,)
     
-    # def get(self, request, *args, **kwargs):
-    #     print("> get")
-    #     notes = Note.objects.all()
-    #     serializer = self.serializer_class(notes, many=True)
-    #     return Response(serializer.data, status=status.HTTP_200_OK)
-
     # TODO: improve this QS
     def get_queryset(self):
-        print("> get")
         return Note._default_manager.filter(is_deleted=False)
 
 
@@ -35,5 +28,4 @@ class NoteDetails(ModelViewSet):
 
     # TODO: improve this QS
     def get_queryset(self):
-        print("> delete")
-        return Note._default_manager.all()
+        return Note._default_manager.filter(is_deleted=False)
